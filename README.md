@@ -91,18 +91,5 @@ tshark \
 
 公开特征数据下载入口将在发布页面中提供。
 
-下载入口：TBD
-
-## 引用
-
-如果本数据集对你的研究有帮助，请引用本项目。
-
-```bibtex
-@misc{zlab-encrypted-traffic-dataset,
-  title        = {Z-Lab Encrypted Traffic Dataset with Plaintext-Ciphertext Correspondence},
-  author       = {TBD},
-  year         = {TBD},
-  howpublished = {TBD},
-  note         = {Encrypted traffic dataset with paired PCAP and TLS key logs for website and webpage fingerprinting research}
-}
-```
+下载入口：
+- Website: https://drive.google.com/file/d/12nDKNlPquAbS-ryqjEuzWTOECLcZqRj8/view?usp=drive_link

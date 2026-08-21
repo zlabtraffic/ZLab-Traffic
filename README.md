@@ -1,65 +1,67 @@
-# Z-Lab 加密流量明密映射数据集
+# Z-Lab Encrypted Traffic Dataset with Plaintext-Ciphertext Mapping
 
-本项目发布面向加密流量分析、网站指纹识别（Website Fingerprinting）和模型鲁棒性评估的数据集。本数据集的核心特点是**明密映射**：在受控访问版本中，同一条访问样本同时保留原始加密流量 `pcap` 与对应的 TLS key log（下文简称 `sslkey`），研究者可以在同一次会话上对齐密文侧信道特征与解密后的应用层内容。
+English | [中文](README_zh.md)
 
-项目当前包含两个子数据集：
+This repository publishes datasets for encrypted traffic analysis, website fingerprinting, and model robustness evaluation. The defining feature is **plaintext-ciphertext mapping**: in the controlled-access release, each visit sample includes both the original encrypted traffic capture (`pcap`) and its corresponding TLS key log (`sslkey`). Researchers can therefore align encrypted side-channel features with decrypted application-layer content from the same session.
 
-- **zlab-website**：以网站首页访问为主体，覆盖 Top100 监控网站、Top100K 背景网站，以及时间、地区、浏览器和代理协议变化场景。详见 [README_website.md](Website/README.md)。
-- **zlab-webpage**：以页面级访问为主体，覆盖 Wikipedia 词条、新闻内容页、GitHub 仓库主页和社交账号主页等更细粒度目标，面向页面级识别、内容级识别和开放世界背景评估。
+The repository currently contains two sub-datasets:
 
-## 为什么需要明密映射
+- **zlab-website**: Website-level visits focused on homepages. It covers a monitored Top 100 set, a Top 100K background set, and scenarios that vary collection time, region, browser, and proxy protocol. See the [zlab-website README](Website/README.md).
+- **zlab-webpage**: Page-level visits to finer-grained targets such as Wikipedia articles, news articles, GitHub repository homepages, and social media profile pages. It supports page-level and content-level identification as well as open-world background evaluation.
 
-传统加密流量数据集通常只公开密文侧特征，例如包长、方向和时间序列。这样的数据可以用于分类建模，但很难回答模型到底利用了哪些页面元素、请求结构或资源加载行为。本数据集通过 `pcap` 与 `sslkey` 的配对发布，使研究者能够：
+## Why plaintext-ciphertext mapping matters
 
-- 将包长、方向、时间间隔、TLS record 大小等密文特征与 HTTP 请求、响应对象、资源类型和加载顺序对齐；
-- 重新提取自定义特征，而不局限于发布者预先定义的特征格式；
-- 分析网页结构、浏览器行为、代理封装和网络环境变化对加密流量分布的影响；
-- 研究网站指纹识别模型的可解释性、泛化能力和鲁棒性。
+Most encrypted traffic datasets expose only ciphertext-side features such as packet sizes, directions, and timestamps. These features support classification, but they make it difficult to determine which page elements, request structures, or resource-loading behaviors a model uses. By pairing each `pcap` with its `sslkey`, this dataset allows researchers to:
 
-## 数据组成
+- align encrypted features, including packet size, direction, inter-arrival time, and TLS record size, with HTTP requests, response objects, resource types, and load order;
+- extract custom features instead of relying on a fixed feature representation chosen by the dataset publisher;
+- study how page structure, browser behavior, proxy encapsulation, and network conditions affect encrypted traffic distributions;
+- investigate the interpretability, generalization, and robustness of website fingerprinting models.
 
-| 子数据集         | 主要目标  | 覆盖内容                                  |
-| ------------ | ----- | ------------------------------------- |
-| zlab-website | 网站级识别 | Top100 网站首页、Top100K 背景网站首页            |
-| zlab-webpage | 页面级识别 | Wikipedia 词条、新闻内容页、GitHub 仓库主页、社交账号主页 |
+## Dataset composition
 
-两个子数据集使用一致的发布思路：原始明密映射数据用于深度分析，派生特征数据用于快速建模和基准复现。
+| Sub-dataset | Primary task | Coverage |
+| --- | --- | --- |
+| zlab-website | Website-level identification | Top 100 website homepages and Top 100K background website homepages |
+| zlab-webpage | Page-level identification | Wikipedia articles, news articles, GitHub repository homepages, and social media profile pages |
 
-## 发布形态
+Both sub-datasets follow the same release model: raw plaintext-ciphertext pairs support in-depth analysis, while derived features support rapid modeling and benchmark reproduction.
 
-### 受控访问数据
+## Release formats
 
-受控访问数据以压缩包为单位发布。每个压缩包对应一个明确的数据切片，切片由数据类型、用途、采集月份、规模、采集地区、协议、浏览器和页面范围共同确定。
+### Controlled-access data
 
-每个切片内部建议结构如下：
+Controlled-access data is distributed as compressed archives. Each archive represents a specific data slice defined by data type, purpose, collection month, scale, collection region, protocol, browser, and page scope.
+
+The recommended internal structure for each slice is:
 
 ```text
 <dataset_slice>/
-├── pcaps/                  # 原始加密流量 pcap
-├── sslkeys/                # 与 pcap 对应的 TLS key log
-└── README.md               # 当前切片的采集条件、标签和注意事项
+├── pcaps/                  # Original encrypted traffic captures
+├── sslkeys/                # TLS key logs corresponding to the pcaps
+└── README.md               # Collection conditions, labels, and notes for this slice
 ```
 
-受控访问数据适合协议解析、明密对应、可解释性分析和自定义特征提取。由于数据包含可用于 TLS 解密的 `sslkey`，需要通过邮件申请获取。
+Controlled-access data supports protocol parsing, plaintext-ciphertext alignment, interpretability analysis, and custom feature extraction. Because the release contains `sslkey` files that can decrypt TLS sessions, access must be requested by email.
 
-### 公开特征数据
+### Public feature data
 
-公开特征数据只包含从原始流量中提取的特征序列，不包含原始 `pcap`、`sslkey` 或可直接解密的材料。该版本适合快速复现实验、训练模型和比较算法。
+The public release contains only feature sequences extracted from the raw traffic. It does not include original `pcap` files, `sslkey` files, or other material that directly enables decryption. This version is intended for reproducing experiments, training models, and comparing algorithms.
 
-典型字段包括：
+Typical fields include:
 
-| 字段 | 含义 |
+| Field | Description |
 | --- | --- |
-| `times` | 包时间序列 |
-| `sizes` | 包大小序列 |
-| `directions` | 包方向序列，`+1` 表示客户端到服务器，`-1` 表示服务器到客户端 |
-| `flow_idx` | 当前 trace 内的 flow 索引 |
-| `labels` | 样本标签 |
-| `metadata` | 采集条件、目标信息和数据切片信息 |
+| `times` | Packet timestamp sequence |
+| `sizes` | Packet size sequence |
+| `directions` | Packet direction sequence; `+1` indicates client to server and `-1` indicates server to client |
+| `flow_idx` | Flow index within the current trace |
+| `labels` | Sample labels |
+| `metadata` | Collection conditions, target information, and data-slice information |
 
-## 明密对应使用示例
+## Example: analyzing aligned plaintext and ciphertext
 
-对于受控访问版本中的样本，可以使用支持 TLS key log 的工具进行解密。例如：
+Samples in the controlled-access release can be decrypted with a tool that supports TLS key logs. For example:
 
 ```bash
 tshark \
@@ -67,29 +69,28 @@ tshark \
   -o tls.keylog_file:sample_sslkey.log
 ```
 
-解密后可将以下信息对齐分析：
+After decryption, researchers can align and analyze:
 
-- 密文侧信道特征：包长、方向、时间间隔、TLS record 大小、flow 持续时间等；
-- 明文应用层信息：请求和响应对象、资源加载顺序、内容类型、协议字段等；
-- 标签与元数据：目标站点、页面、采集时间、采集地区、浏览器、代理协议等。
+- encrypted side-channel features: packet sizes, directions, inter-arrival times, TLS record sizes, and flow durations;
+- plaintext application-layer information: request and response objects, resource load order, content types, and protocol fields;
+- labels and metadata: target website, page, collection time, collection region, browser, and proxy protocol.
 
-## 访问方式
+## Access
 
-### 受控访问数据申请
+### Requesting controlled-access data
 
-请通过邮件申请受控访问数据。申请邮件建议包含：
+Request controlled-access data by email. The request should include:
 
-- 申请人姓名、单位和联系方式；
-- 研究目的和计划使用的数据范围；
-- 需要申请的子数据集和数据切片；
-- 数据保存、访问控制和销毁方式；
-- 是否计划公开发表相关实验结果。
+- the applicant's name, affiliation, and contact details;
+- the research purpose and the requested data scope;
+- the requested sub-datasets and data slices;
+- the planned storage, access-control, and deletion procedures;
+- whether the applicant plans to publish experimental results based on the data.
 
-申请邮箱：zlab_traffic@gmail.com
+Contact: zlab_traffic@gmail.com
 
-### 公开特征数据下载
+### Downloading public feature data
 
-公开特征数据下载入口将在发布页面中提供。
+Public feature downloads are listed on the release page.
 
-下载入口：
 - Website: https://drive.google.com/file/d/12nDKNlPquAbS-ryqjEuzWTOECLcZqRj8/view?usp=drive_link

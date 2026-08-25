@@ -1,7 +1,5 @@
 # zlab-webpage 数据集
 
-最后更新：2026-08-25 10:18:17
-
 [English](README.md) | 中文
 
 zlab-webpage 是 Z-Lab 加密流量明密映射数据集中的页面级子数据集，主要面向页面指纹识别（Webpage Fingerprinting）、开放世界识别和跨环境鲁棒性评估。公开特征覆盖 Wikipedia、X.com、Bluesky、Mastodon、Threads 和 Tumblr 六个网站。
@@ -144,4 +142,4 @@ data = numpy.load(path, allow_pickle=True)
 
 申请邮箱：zlab_traffic@gmail.com
 
-公开下载入口：Google Drive 文件夹（链接 TBD）。
+公开下载入口：TBD

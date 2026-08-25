@@ -1,7 +1,5 @@
 # zlab-webpage Dataset
 
-最后更新：2026-08-25 10:18:17
-
 English | [中文](README_zh.md)
 
 zlab-webpage is the page-level sub-dataset of the Z-Lab Encrypted Traffic Dataset with Plaintext-Ciphertext Mapping. It is intended for Webpage Fingerprinting, open-world identification, and robustness evaluation across collection environments. The public features cover six websites: Wikipedia, X.com, Bluesky, Mastodon, Threads, and Tumblr.
@@ -144,4 +142,4 @@ The original plaintext-ciphertext mapping data containing `pcap` and `sslkey` is
 
 Contact: zlab_traffic@gmail.com
 
-Public download: Google Drive folder (link TBD).
+Public download: TBD

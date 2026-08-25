@@ -1,5 +1,7 @@
 # zlab-webpage Dataset
 
+最后更新：2026-08-25 10:18:17
+
 English | [中文](README_zh.md)
 
 zlab-webpage is the page-level sub-dataset of the Z-Lab Encrypted Traffic Dataset with Plaintext-Ciphertext Mapping. It is intended for Webpage Fingerprinting, open-world identification, and robustness evaluation across collection environments. The public features cover six websites: Wikipedia, X.com, Bluesky, Mastodon, Threads, and Tumblr.
@@ -76,7 +78,7 @@ Google Drive/
 
 Each website archive contains only the derived features for the corresponding batch, same-name mapping CSV files, README files, and checksum files. `manifest.csv` records at least `site`, `capture_task`, archive filename, file size, and SHA-256. `SHA256SUMS.txt` verifies all files in the release directory.
 
-### NPZ fields
+Typical NPZ fields include:
 
 | Field | Description |
 | --- | --- |
@@ -120,11 +122,15 @@ Train a model on the Wikipedia US/Chrome closed-world batch and evaluate classif
 
 Use the open-world account collections from X.com, Bluesky, Mastodon, Threads, and Tumblr for identification and algorithm comparison.
 
-### Temporal and geographic comparison
+### Temporal drift
 
-Train on the Wikipedia 2026-03-25 US/Chrome batch and evaluate cross-time or cross-region generalization on the 2026-05-14 France, 2026-05-14 Singapore, and 2026-06-12 US batches.
+Train on the Wikipedia 2026-03-25 US/Chrome batch and evaluate temporal generalization on the 2026-06-12 US batch. The France and Singapore batches additionally support comparisons where time and geography vary together.
 
-### Browser comparison
+### Geographic drift
+
+Train on the Wikipedia 2026-03-25 US/Chrome batch and evaluate cross-region generalization on the 2026-05-14 France and Singapore batches. Because these batches were collected on a different date, this comparison includes both geographic and temporal shift.
+
+### Browser drift
 
 Train on the Wikipedia US/Chrome batch and evaluate the effect of browser differences on traffic features using the US/Edge and US/Firefox batches.
 
@@ -132,7 +138,7 @@ Train on the Wikipedia US/Chrome batch and evaluate the effect of browser differ
 
 The public package does not contain `pcap` or `sslkey`, so it cannot be used directly for plaintext-ciphertext alignment analysis. Request the original plaintext-ciphertext mapping data through the access procedure when needed.
 
-## Access
+### Access
 
 The original plaintext-ciphertext mapping data containing `pcap` and `sslkey` is available by email request. Public feature data is distributed as website-specific archives in Google Drive.
 

@@ -1,5 +1,7 @@
 # zlab-webpage 数据集
 
+最后更新：2026-08-25 10:18:17
+
 [English](README.md) | 中文
 
 zlab-webpage 是 Z-Lab 加密流量明密映射数据集中的页面级子数据集，主要面向页面指纹识别（Webpage Fingerprinting）、开放世界识别和跨环境鲁棒性评估。公开特征覆盖 Wikipedia、X.com、Bluesky、Mastodon、Threads 和 Tumblr 六个网站。
@@ -76,7 +78,7 @@ Google Drive/
 
 每个网站压缩包只包含对应批次的派生特征、同名映射 CSV、README 和校验文件。`manifest.csv` 至少记录 `site`、`capture_task`、压缩包文件名、文件大小和 SHA-256；`SHA256SUMS.txt` 用于校验发布目录中的全部文件。
 
-### NPZ 字段
+NPZ 文件的典型字段包括：
 
 | 字段 | 含义 |
 | --- | --- |
@@ -120,11 +122,15 @@ data = numpy.load(path, allow_pickle=True)
 
 使用 X.com、Bluesky、Mastodon、Threads 和 Tumblr 的开放世界账号集合进行识别与算法比较。
 
-### 时间与地理位置对照
+### 时间漂移
 
-使用 Wikipedia 的 2026-03-25 US/Chrome 批次训练模型，在 2026-05-14 France、2026-05-14 Singapore 和 2026-06-12 US 批次上评估跨时间或跨地区泛化能力。
+使用 Wikipedia 的 2026-03-25 US/Chrome 批次训练模型，在 2026-06-12 US 批次上评估时间泛化能力；France 和 Singapore 批次还可用于同时包含时间与地区变化的对照。
 
-### 浏览器对照
+### 空间漂移
+
+使用 Wikipedia 的 2026-03-25 US/Chrome 批次训练模型，在 2026-05-14 France 和 Singapore 批次上评估跨地区泛化能力。由于这些批次的采集日期不同，该对照同时包含地区和时间漂移。
+
+### 浏览器漂移
 
 使用 Wikipedia 的 US/Chrome 批次训练模型，在 US/Edge 和 US/Firefox 批次上评估浏览器差异对流量特征的影响。
 
@@ -132,7 +138,7 @@ data = numpy.load(path, allow_pickle=True)
 
 公开包不包含 `pcap` 和 `sslkey`，不能直接进行明文与密文对应分析。需要原始明密映射数据时，请按访问方式申请受控数据。
 
-## 访问方式
+### 访问方式
 
 包含 `pcap` 和 `sslkey` 的原始明密映射数据通过邮件申请获取。公开特征数据按网站放入 Google Drive 压缩包。
 

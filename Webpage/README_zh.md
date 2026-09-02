@@ -142,4 +142,4 @@ data = numpy.load(path, allow_pickle=True)
 
 申请邮箱：zlab_traffic@gmail.com
 
-公开下载入口：TBD
+公开下载入口：https://drive.google.com/drive/folders/17eYE_KkU3UQOE2w7BWLeo2-p2aBG5tE8

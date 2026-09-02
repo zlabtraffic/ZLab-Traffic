@@ -4,8 +4,8 @@
 
 项目当前包含两个子数据集：
 
-- **zlab-website**：以网站首页访问为主体，覆盖 Top100 监控网站、Top100K 背景网站，以及时间、地区、浏览器和代理协议变化场景。详见 [README_website.md](Website/README_zh.md)。
-- **zlab-webpage**：以页面级访问为主体，覆盖 Wikipedia 词条、新闻内容页、GitHub 仓库主页和社交账号主页等更细粒度目标，面向页面级识别、内容级识别和开放世界背景评估。[zlab-webpage README](Webpage/README_zh.md).
+- **zlab-website**：以网站首页访问为主体，覆盖 Top100 监控网站、Top100K 背景网站，以及时间、地区、浏览器和代理协议变化场景。详见 [README_website_zh.md](Website/README_zh.md)。
+- **zlab-webpage**：以页面级访问为主体，覆盖 Wikipedia 词条、新闻内容页、GitHub 仓库主页和社交账号主页等更细粒度目标，面向页面级识别、内容级识别和开放世界背景评估。[README_webpage_zh](Webpage/README_zh.md).
 
 ## 为什么需要明密映射
 
@@ -93,3 +93,4 @@ tshark \
 
 下载入口：
 - Website: https://drive.google.com/file/d/12nDKNlPquAbS-ryqjEuzWTOECLcZqRj8/view?usp=drive_link
+- WebPage: https://drive.google.com/drive/folders/17eYE_KkU3UQOE2w7BWLeo2-p2aBG5tE8

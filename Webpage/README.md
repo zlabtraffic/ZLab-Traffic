@@ -142,4 +142,4 @@ The original plaintext-ciphertext mapping data containing `pcap` and `sslkey` is
 
 Contact: zlab_traffic@gmail.com
 
-Public download: TBD
+Public download: https://drive.google.com/drive/folders/17eYE_KkU3UQOE2w7BWLeo2-p2aBG5tE8

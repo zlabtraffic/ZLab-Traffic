@@ -92,5 +92,5 @@ tshark \
 公开特征数据下载入口将在发布页面中提供。
 
 下载入口：
-- Website: https://drive.google.com/file/d/12nDKNlPquAbS-ryqjEuzWTOECLcZqRj8/view?usp=drive_link
+- Website: https://drive.google.com/drive/folders/1NsGZ04G04Qy5oybSH1DST68-CPaSI61d
 - WebPage: https://drive.google.com/drive/folders/17eYE_KkU3UQOE2w7BWLeo2-p2aBG5tE8

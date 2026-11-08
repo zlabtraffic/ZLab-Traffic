@@ -85,7 +85,7 @@ tshark \
 - 数据保存、访问控制和销毁方式；
 - 是否计划公开发表相关实验结果。
 
-申请邮箱：zlab_traffic@gmail.com
+申请邮箱：zlabtraffic@gmail.com
 
 ### 公开特征数据下载
 

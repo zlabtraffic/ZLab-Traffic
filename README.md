@@ -87,7 +87,7 @@ Request controlled-access data by email. The request should include:
 - the planned storage, access-control, and deletion procedures;
 - whether the applicant plans to publish experimental results based on the data.
 
-Contact: zlab_traffic@gmail.com
+Contact: zlabtraffic@gmail.com
 
 ### Downloading public feature data
 

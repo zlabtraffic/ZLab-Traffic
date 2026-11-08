@@ -140,6 +140,6 @@ The public package does not contain `pcap` or `sslkey`, so it cannot be used dir
 
 The original plaintext-ciphertext mapping data containing `pcap` and `sslkey` is available by email request. Public feature data is distributed as website-specific archives in Google Drive.
 
-Contact: zlab_traffic@gmail.com
+Contact: zlabtraffic@gmail.com
 
 Public download: https://drive.google.com/drive/folders/17eYE_KkU3UQOE2w7BWLeo2-p2aBG5tE8
